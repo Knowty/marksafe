@@ -40,7 +40,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'operation',
     'accounts',
-    'victim'
+    'victim',
+    'processor'
 )
 
 
@@ -101,6 +102,14 @@ USE_L10N = True
 USE_TZ = True
 
 MAX_RETRY = 3
+SR_NUMBER = "+919069126951"
+AGENT_NUMBER = "+919069113755"
+SR_KEY = "878f41fa-a503-11e5-b374-067cf20e9301"
+APP_KEY = "twhp3Wlyir9bg4S0A64Qf7lxBZ5sEW7n6q1tryLL"
+MAKECALL_URL = 'https://kpi.knowlarity.com/Basic/v1/account/call/makecall'
+RETRY_AFTER = '1800' #in seconds
+AWS_ACCESS_KEY_ID = ''
+AWS_SECRET_KEY = ''
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
@@ -128,7 +137,7 @@ LOGGING = {
     },
     'handlers': {
         'root': {
-            'level': 'DEBUG',
+            'level': 'INFO',
             'class': 'logging.FileHandler',
             'filename': '/var/log/marksafe/marksafe.log',
             'formatter': 'verbose',
