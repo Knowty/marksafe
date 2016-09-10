@@ -5,16 +5,16 @@ from django.views.generic.edit import CreateView, FormView
 
 from operation.models import Operation
 from processor.utils import push_record_to_sqs_queue
-from victim.forms import RefugeeCreateForm
+from victim.forms import VictimCreateForm
 from victim.models import Victim
 
 
-class RefugeeCreateView(FormView):
+class VictimCreateView(FormView):
     """
     This will handle creation of Refugees.
     """
     template_name = 'victim/create.html'
-    form_class = RefugeeCreateForm
+    form_class = VictimCreateForm
     success_url = '/victim/success'
 
     def form_valid(self, form):
@@ -22,7 +22,7 @@ class RefugeeCreateView(FormView):
         data['operation'] = Operation.objects.get(id=data.get('operation'))
         data.pop('csrfmiddlewaretoken')
         Victim.objects.create(**data)
-        return super(RefugeeCreateView, self).form_valid(form)
+        return super(VictimCreateView, self).form_valid(form)
 
 
 
