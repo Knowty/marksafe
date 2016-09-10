@@ -107,3 +107,8 @@ STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'accounts.User'
 STATICFILES_DIRS = ( os.path.join(BASE_DIR, "static"), )
+
+
+COMMON_SQS_QUEUE = 'marksafe'
+AWS_ACCESS_KEY_ID = 'AKIAIIQNFVAMHFIUT47A'
+AWS_SECRET_KEY = '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'

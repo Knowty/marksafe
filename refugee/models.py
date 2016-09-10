@@ -15,9 +15,9 @@ class Refugee(models.Model):
     """
 
     name = models.CharField(max_length=64)
-    phone_number = models.CharField(max_length=20)
+    phone_number = models.CharField(max_length=20, unique=True)
     photo = models.ImageField(blank=True, upload_to='refugee_photos')
-    alternate_contact_number = models.CharField(max_length=20, blank=True)
+    notification_contact_number = models.CharField(max_length=20, blank=True)
     safety_level = models.IntegerField(choices=SAFETY_LEVELS, default=1)
     retry_count = models.IntegerField(default=0)
     location = models.TextField(null=True)
