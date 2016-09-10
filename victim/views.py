@@ -5,10 +5,11 @@ from django.views.generic.edit import CreateView, FormView
 
 from operation.models import Operation
 from processor.utils import push_record_to_sqs_queue
-from victim.forms import RefugeeCreateForm
+from victim.forms import VictimCreateForm
 from victim.models import Victim
 
 from django.contrib.auth.decorators import login_required
+
 
 class LoginRequiredMixin(object):
     @classmethod
@@ -16,15 +17,14 @@ class LoginRequiredMixin(object):
         view = super(LoginRequiredMixin, cls).as_view(**initkwargs)
         return login_required(view)
 
-# Create your views here.
 
-class RefugeeCreateView(LoginRequiredMixin, FormView):
+class VictimCreateView(FormView):
     """
     This will handle creation of Refugees.
     """
     template_name = 'victim/create.html'
+    form_class = VictimCreateForm
     login_url = 'login/'
-    form_class = RefugeeCreateForm
     success_url = '/victim/success'
 
     def form_valid(self, form):
@@ -32,11 +32,11 @@ class RefugeeCreateView(LoginRequiredMixin, FormView):
         data['operation'] = Operation.objects.get(id=data.get('operation'))
         data.pop('csrfmiddlewaretoken')
         Victim.objects.create(**data)
-        return super(RefugeeCreateView, self).form_valid(form)
+        return super(VictimCreateView, self).form_valid(form)
 
 
 
-class RefugeeSearchView(LoginRequiredMixin, View):
+class VictimSearchView(View):
     """
     This will handle Refugee search.
     """

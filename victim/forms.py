@@ -4,7 +4,7 @@ from operation.models import Operation
 from victim.models import Victim, SAFETY_LEVELS
 
 
-class RefugeeCreateForm(forms.Form):
+class VictimCreateForm(forms.Form):
     name = forms.CharField(max_length=64)
     phone_number = forms.CharField(max_length=20)
     photo = forms.ImageField(required=False)
