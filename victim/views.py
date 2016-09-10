@@ -8,13 +8,22 @@ from processor.utils import push_record_to_sqs_queue
 from victim.forms import VictimCreateForm
 from victim.models import Victim
 
+from django.contrib.auth.decorators import login_required
 
-class VictimCreateView(FormView):
+
+class LoginRequiredMixin(object):
+    @classmethod
+    def as_view(cls, **initkwargs):
+        view = super(LoginRequiredMixin, cls).as_view(**initkwargs)
+        return login_required(view)
+
+class VictimCreateView(LoginRequiredMixin, FormView):
     """
     This will handle creation of Refugees.
     """
     template_name = 'victim/create.html'
     form_class = VictimCreateForm
+    login_url = 'login/'
     success_url = '/victim/success'
 
     def form_valid(self, form):
@@ -26,11 +35,11 @@ class VictimCreateView(FormView):
 
 
 
-class RefugeeSearchView(View):
+class RefugeeSearchView(LoginRequiredMixin, View):
     """
     This will handle Refugee search.
     """
-
+    login_url = 'login/'
     def get(self, request):
 
         type = 'search'

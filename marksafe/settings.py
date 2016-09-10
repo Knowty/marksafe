@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     'victim'
 )
 
+
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -144,3 +145,4 @@ LOGGING = {
 
 AWS_ACCESS_KEY_ID = 'AKIAIIQNFVAMHFIUT47A'
 AWS_SECRET_KEY = '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'
+LOGIN_URL = '/login'
