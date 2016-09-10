@@ -17,7 +17,8 @@ class LoginRequiredMixin(object):
         view = super(LoginRequiredMixin, cls).as_view(**initkwargs)
         return login_required(view)
 
-class VictimCreateView(LoginRequiredMixin, FormView):
+
+class VictimCreateView(FormView):
     """
     This will handle creation of Refugees.
     """
@@ -35,7 +36,7 @@ class VictimCreateView(LoginRequiredMixin, FormView):
 
 
 
-class RefugeeSearchView(LoginRequiredMixin, View):
+class VictimSearchView(View):
     """
     This will handle Refugee search.
     """
