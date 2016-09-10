@@ -10,3 +10,4 @@ class RefugeeCreateForm(ModelForm):
 
     class Meta:
         model = Refugee
+        exclude = ['safety_level']
