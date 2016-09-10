@@ -23,18 +23,18 @@ def push_message_to_sqs_queue(message):
 
 
 
-def push_record_to_sqs_queue(refugee_id):
+def push_record_to_sqs_queue(victim_id):
     """
     Prepares the message to be written to the SQS queue, that will later be used for the status confirmation campaign.
-    :param refugee_id: The unique ID of the refugee.
+    :param victim_id: The unique ID of the victim.
     """
     from victim.models import Victim
-    refugee = Victim.objects.get(id=refugee_id)
+    victim = Victim.objects.get(id=victim_id)
     message = {
-        'phone_number': refugee.phone_number,
-        'notification_phone_number': refugee.notification_contact_number,
-        'refugee_id': refugee.id,
-        'operation_id': refugee.operation.id
+        'phone_number': victim.phone_number,
+        'notification_phone_number': victim.notification_contact_number,
+        'victim_id': victim.id,
+        'operation_id': victim.operation.id
     }
     json_message = json.dumps(message)
     logging.info('Trying to send a message to SQS queue with message = %s' % json_message)
@@ -51,5 +51,5 @@ def get_message_from_sqs_queue():
                                             aws_secret_access_key=settings.AWS_SECRET_KEY)
 
     queue = connection.get_queue(settings.COMMON_SQS_QUEUE)
-    messages = queue.get_messages(10, visibility_timeout=3000)
+    messages = queue.get_messages(10, visibility_timeout=settings.RETRY_AFTER)
     return messages
