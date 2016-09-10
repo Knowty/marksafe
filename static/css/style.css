@@ -1,0 +1,124 @@
+body {
+    margin: 0px auto;
+}
+.white-container {
+    background-color: white;
+    position: absolute;
+    margin-left: 8%;
+}
+.white-container .inner-content {
+    margin-left: -31%;
+}
+.table-div {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+.leaderboard-text {
+    margin-left: 27%;
+}
+th {
+    color: #5B71BC;
+}
+.leaderboard-table-header {
+    font-size: larger;
+}
+.bottom-cols {
+    margin-left: 26%;
+    margin-right: 31%;
+}
+.nav-image {
+    margin-left: 25%;
+    height: 44%;
+    width: 47%;
+}
+.nav-sr-api-logo {
+    margin-left: 40%;
+    margin-top: -1.2%;
+    max-width: 100%;
+    zoom: 62% !important;
+}
+.orange-text {
+    margin-right: 1%;
+}
+.center-text {
+    margin-left: 36%;
+    font-weight: 500;
+}
+.bottom-cols-headers {
+    margin-left: -3%;
+}
+hr {
+    border-top: 1px solid #40b1af;
+    margin-left: 26% !important;
+    margin-right: 31%;
+}
+nav .brand-logo {
+    margin-left: 3%;
+    !important
+}
+footer.page-footer {
+    padding-top: 0%;
+    !important margin-top: 100%;
+    !important
+}
+.leaderboard {
+    margin-top: -3%;
+    margin-left: 27%;
+    width: 510px;
+}
+.status-badge {
+    background-color: #ADEF2B;
+    margin-left: -11%;
+    zoom: 77%;
+}
+.bottom-rows {
+    font-family: sans-serif;
+    font-stretch: condensed;
+    font-weight: 200;
+    color: chocolate;
+}
+.pie-chart {
+    position: absolute;
+    margin-top: 5%;
+    margin-left: 60%;
+}
+.analytics {
+    position: absolute;
+    margin-left: 53%;
+    margin-top: 38%;
+    width: 45%;
+}
+.analytics .statement {
+    font-weight: 500;
+}
+.analytics .card {
+    width: 176px;
+}
+.percentage-text {
+    margin-left: 33%;
+    font-weight: bolder;
+}
+
+.TV {
+    background-color: #88C65A !important;
+}
+
+.VE {
+    background-color: #4DCDED !important;
+}
+
+.VotesPolled {
+    background-color: #066A83 !important;
+}
+
+.leading-team {
+    margin-left: 72%;
+    position: absolute;
+    margin-top: 18%;
+    font-weight: 100;
+    font-size: x-large;
+}
+
+.sr-dev-logo {
+	zoom: 9%;
+}

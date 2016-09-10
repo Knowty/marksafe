@@ -58,7 +58,7 @@ ROOT_URLCONF = 'marksafe.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ["templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -106,3 +106,4 @@ STATIC_URL = '/static/'
 
 
 AUTH_USER_MODEL = 'accounts.User'
+STATICFILES_DIRS = ( os.path.join(BASE_DIR, "static"), )
