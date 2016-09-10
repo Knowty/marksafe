@@ -1,6 +1,14 @@
 .add-number {
     margin-top: 1.5%;
 }
+
+.add-disable{
+	pointer-events: none;
+}
 .logout {
     margin-left: 100%;
+}
+.fixed-action-btn.horizontal ul {
+right: -225px;
+top: 48%;
 }
