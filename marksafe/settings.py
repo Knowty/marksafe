@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import logging
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -37,8 +38,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'operation',
     'accounts',
-    'refugee'
+    'victim'
 )
 
 LOGIN_URL = "/login"
@@ -99,7 +101,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-
+MAX_RETRY = 3
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
@@ -108,3 +110,37 @@ STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'accounts.User'
 STATICFILES_DIRS = ( os.path.join(BASE_DIR, "static"), )
+
+
+COMMON_SQS_QUEUE = 'marksafe'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'root': {
+        'level': 'DEBUG',
+        'handlers': ['root'],
+
+    },
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+    },
+    'handlers': {
+        'root': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': '/var/log/marksafe/marksafe.log',
+            'formatter': 'verbose',
+    }
+        },
+    'loggers': {
+        'root': {
+            'handlers': ['root'],
+            'propagate': True,
+            'level': 'DEBUG',
+        },
+    }
+        }
+

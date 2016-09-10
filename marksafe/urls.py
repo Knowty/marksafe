@@ -10,5 +10,7 @@ urlpatterns = [
     url(r'^logout/$', views.logout,
                           {'next_page': '/'}),
     url(r'^$', Home.as_view()),
-    url(r'refugee/', include('refugee.urls'))
+    url(r'refugee/', include('refugee.urls')),
+    url(r'accounts/', include('accounts.urls')),
+    url(r'victim/', include('victim.urls')),
 ]
