@@ -43,7 +43,6 @@ INSTALLED_APPS = (
     'victim'
 )
 
-LOGIN_URL = "/login"
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -144,3 +143,5 @@ LOGGING = {
     }
         }
 
+
+LOGIN_URL = '/login'
