@@ -22,13 +22,18 @@ source.addEventListener('message', function(event) {
 
             if (data.dispnumber == settings.HACKATHON.sr_number) {
 
-                if (data.business_call_type == 'Phone') {
+                if (data.business_call_type == 'Voicemail') {
                     // 2nd Option was selected, User is not safe.
                     console.log('Its a phone.');
                     query = `UPDATE victim_victim SET safety_level = 3 where phone_number = "${data.caller_id}"`;
                     console.log(query);
                     db.run(query);
 
+                    new_query = `SELECT phone_number FROM victim_victim WHERE phone_number = "${data.caller_id}"`;
+                    db.each(new_query, function(err, row) {
+                        text = `${row.name} has been marked as needs help!!`;
+                        sendSms(row.notification_contact_number, text)
+                    });
                 }
 
                 if (data.business_call_type == 'DTMF') {
@@ -46,9 +51,26 @@ source.addEventListener('message', function(event) {
                     console.log(query);
                     db.run(query);
 
+                    new_query = `SELECT phone_number FROM victim_victim WHERE phone_number = "${data.caller_id}"`;
+                    db.each(new_query, function(err, row) {
+                        text = `${row.name} has been marked safe!!`;
+                        sendSms(row.notification_contact_number, text)
+                    });
+
                 }
             }
         });
         console.log('Got a CDR = ' + JSON.stringify(data));
     }
 });
+
+
+
+function sendSms(number, text) {
+	url = settings.SMS.API_URL + `?mobile_number=${number}&message=${text}&sms_type=t`
+
+	console.log("Sending SMS using URL = " + url);
+	http.get(url, function(response) {
+			console.log('SMS API result = ' + response);
+	});
+}

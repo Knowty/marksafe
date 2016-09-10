@@ -9,5 +9,4 @@ class VictimCreateForm(forms.Form):
     phone_number = forms.CharField(max_length=20)
     notification_contact_number = forms.CharField(max_length=20, required=False)
     location = forms.CharField(widget=forms.Textarea, required=False)
-    comments = forms.CharField(widget=forms.Textarea, required=False)
     operation = forms.ModelChoiceField(queryset=Operation.objects.all(),  widget=forms.Select, empty_label=None)
