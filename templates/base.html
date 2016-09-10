@@ -13,10 +13,9 @@
 
 <body>
     <nav class="light-blue lighten-1" role="navigation">
-        <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">MarkSafe</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="/logout">Logout</a></li>
-            </ul>
+        <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">MarkSafe</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down"><a href="/logout" class="right logout">Logout</a></ul>
+            <a class="btn-floating btn waves-effect waves-light red right add-number" href="/victim/create">+</a>
         </div>
     </nav>
     <div class="section no-pad-bot" id="index-banner">
@@ -52,6 +51,14 @@
         $(document).ready(function() {
             $('select').material_select();
         });
+        {% if not user.is_authenticated %}
+    $(".add-number").css("display", "none");
+    $(".logout").text("Login");
+    $(".logout").attr("href", "/login")
+    {% endif %}
+    {% if form.errors %}
+    $.notify("Wrong credentials")
+    {% endif %}
         </script>
 </body>
 
