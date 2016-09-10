@@ -1,7 +1,7 @@
 from django import forms
 
 from operation.models import Operation
-from refugee.models import Refugee, SAFETY_LEVELS
+from victim.models import Victim, SAFETY_LEVELS
 
 
 class RefugeeCreateForm(forms.Form):

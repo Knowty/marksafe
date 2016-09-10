@@ -40,7 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'operation',
     'accounts',
-    'refugee'
+    'victim'
 )
 
 MIDDLEWARE_CLASSES = (

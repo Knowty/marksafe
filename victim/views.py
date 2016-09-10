@@ -5,23 +5,23 @@ from django.views.generic.edit import CreateView, FormView
 
 from operation.models import Operation
 from processor.utils import push_record_to_sqs_queue
-from refugee.forms import RefugeeCreateForm
-from refugee.models import Refugee
+from victim.forms import RefugeeCreateForm
+from victim.models import Victim
 
 
 class RefugeeCreateView(FormView):
     """
     This will handle creation of Refugees.
     """
-    template_name = 'refugee/create.html'
+    template_name = 'victim/create.html'
     form_class = RefugeeCreateForm
-    success_url = '/refugee/success'
+    success_url = '/victim/success'
 
     def form_valid(self, form):
         data = form.data.dict()
         data['operation'] = Operation.objects.get(id=data.get('operation'))
         data.pop('csrfmiddlewaretoken')
-        Refugee.objects.create(**data)
+        Victim.objects.create(**data)
         return super(RefugeeCreateView, self).form_valid(form)
 
 
@@ -42,12 +42,12 @@ class RefugeeSearchView(View):
 
             #  Try to find a Refuge by name / number
             try:
-                result = Refugee.objects.get(phone_number=search_input)
-            except Refugee.DoesNotExist:
+                result = Victim.objects.get(phone_number=search_input)
+            except Victim.DoesNotExist:
                 result = None
 
         payload = {
             'type': type,
             'result': result
         }
-        return render(request, 'refugee/search.html', payload)
+        return render(request, 'victim/search.html', payload)

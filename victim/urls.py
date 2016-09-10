@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from django.views.generic import TemplateView
-from refugee.views import RefugeeCreateView, RefugeeSearchView
+from victim.views import RefugeeCreateView, RefugeeSearchView
 
 urlpatterns = [
     url(r'^create$', RefugeeCreateView.as_view()),

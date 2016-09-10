@@ -1,6 +1,7 @@
 from django.db import models
 from operation.models import Operation
 from processor.utils import push_record_to_sqs_queue
+import logging
 
 SAFETY_LEVELS = (
     (0, 'SAFE'),
@@ -11,7 +12,7 @@ SAFETY_LEVELS = (
 )
 
 
-class Refugee(models.Model):
+class Victim(models.Model):
     """
     Used to store refugee information
     """
@@ -28,5 +29,6 @@ class Refugee(models.Model):
     operation = models.ForeignKey(Operation,blank=True,default=None)
 
     def save(self, *args, **kwags):
-        super(Refugee, self).save(*args, **kwags)
+        super(Victim, self).save(*args, **kwags)
+        logging.info('Added a new refugee with ID = %d' % self.id)
         push_record_to_sqs_queue(self.id)
