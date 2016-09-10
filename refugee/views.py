@@ -1,18 +1,29 @@
 from django.db.models.query_utils import Q
 from django.shortcuts import render
 from django.views.generic.base import View
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, FormView
+
+from operation.models import Operation
+from processor.utils import push_record_to_sqs_queue
+from refugee.forms import RefugeeCreateForm
 from refugee.models import Refugee
 
 
-class RefugeeCreateView(CreateView):
+class RefugeeCreateView(FormView):
     """
     This will handle creation of Refugees.
     """
     template_name = 'refugee/create.html'
-    model = Refugee
-    fields = ['name', 'phone_number', 'photo', 'notification_contact_number', 'location']
+    form_class = RefugeeCreateForm
     success_url = '/refugee/success'
+
+    def form_valid(self, form):
+        data = form.data.dict()
+        data['operation'] = Operation.objects.get(id=data.get('operation'))
+        data.pop('csrfmiddlewaretoken')
+        Refugee.objects.create(**data)
+        return super(RefugeeCreateView, self).form_valid(form)
+
 
 
 class RefugeeSearchView(View):

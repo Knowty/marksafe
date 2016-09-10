@@ -3,7 +3,6 @@ from django.conf import settings
 from boto.sqs.message import Message
 import json
 
-from refugee.models import Refugee
 
 
 def push_message_to_sqs_queue(message):
@@ -27,11 +26,11 @@ def push_record_to_sqs_queue(refugee_id):
     Prepares the message to be written to the SQS queue, that will later be used for the status confirmation campaign.
     :param refugee_id: The unique ID of the refugee.
     """
-
+    from refugee.models import Refugee
     refugee = Refugee.objects.get(id=refugee_id)
     message = {
-        'phone_number': Refugee.phone_number,
-        'notification_phone_number': Refugee.notification_contact_number,
+        'phone_number': refugee.phone_number,
+        'notification_phone_number': refugee.notification_contact_number,
         'refugee_id': refugee.id,
         'operation_id': refugee.operation.id
     }

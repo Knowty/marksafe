@@ -71,8 +71,14 @@
     </footer>
     <!--  Scripts-->
     <script src="{% static 'js/jquery.min.js' %}"></script>
-    <script src="{% static 'js/materilaize.min.js' %}"></script>
+    <script src="{% static 'js/materialize.js' %}"></script>
     <script src="{% static 'js/custom.js' %}"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('select').material_select();
+        });
+        </script>
 </body>
 
 </html>

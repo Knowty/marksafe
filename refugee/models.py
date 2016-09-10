@@ -1,5 +1,7 @@
 from django.db import models
 from operation.models import Operation
+from processor.utils import push_record_to_sqs_queue
+
 SAFETY_LEVELS = (
     (0, 'SAFE'),
     (1, 'NOT CONFIRMED'),
@@ -24,3 +26,7 @@ class Refugee(models.Model):
     comments = models.TextField(null=True)
     status_updated_by = models.TextField(null=True)
     operation = models.ForeignKey(Operation,blank=True,default=None)
+
+    def save(self, *args, **kwags):
+        super(Refugee, self).save(*args, **kwags)
+        push_record_to_sqs_queue(self.id)
