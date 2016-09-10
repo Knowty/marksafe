@@ -9,3 +9,6 @@ class Operation(models.Model):
     name = models.CharField(max_length=64)
     comments = models.TextField(null=True)
     status = models.TextField()
+
+    def __str__(self):
+        return self.name

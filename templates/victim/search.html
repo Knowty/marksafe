@@ -29,7 +29,17 @@
                         </tr>
                         <tr>
                             <td class="td-label">Status</td>
-                            <td class="td-result">{{ result.safety_level }}</td>
+                            {% if result.safety_level == 0 %}
+                                <td class="green-text">Safe</td>
+                            {% elif result.safety_level == 1 %}
+                                <td class="grey-text">Not Confirmed</td>
+                            {% elif result.safety_level == 2 %}
+                                <td class="yellow-text">Unreachable</td>
+                            {% elif result.safety_level == 3 %}
+                                <td class="red-text">Needs help</td>
+                            {% elif result.safety_level == 4 %}
+                                <td class="green-text">Not in affected zone.</td>
+                            {% endif %}
                         </tr>
                     </tbody>
                 </table>
