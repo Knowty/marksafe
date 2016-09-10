@@ -1,11 +1,9 @@
-from django.shortcuts import render
-from django.views.generic.edit import FormView
-
-from refugee.forms import RefugeeCreateForm
+from django.views.generic.edit import CreateView
+from refugee.models import Refugee
 
 
-class RefugeeCreateView(FormView):
+class RefugeeCreateView(CreateView):
     template_name = 'refugee/create.html'
-    form_class = RefugeeCreateForm
-    success_url = '/accounts/refugee-created-successfully'
-
+    model = Refugee
+    fields = ['name', 'phone_number', 'photo', 'alternate_contact_number', 'location']
+    success_url = '/refugee/success'
