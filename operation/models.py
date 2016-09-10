@@ -1,9 +1,9 @@
 from django.db import models
 
 # Create your models here.
-class operation(models.Model):
+class Operation(models.Model):
     """
-    Used to store refugee information
+    Used to store Operation information
     """
 
     name = models.CharField(max_length=64)

@@ -98,7 +98,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-
+MAX_RETRY = 3
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 

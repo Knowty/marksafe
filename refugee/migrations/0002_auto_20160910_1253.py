@@ -7,7 +7,6 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('operation', '0001_initial'),
         ('refugee', '0001_initial'),
     ]
 
@@ -20,8 +19,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='refugee',
             name='operation',
-            field=models.ForeignKey(default='dummy', to='operation.operation'),
-            preserve_default=False,
+            field=models.TextField(null=True),
         ),
         migrations.AddField(
             model_name='refugee',
@@ -36,6 +34,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='refugee',
             name='safety_level',
-            field=models.IntegerField(default=1, choices=[(0, b'SAFE'), (1, b'NOT CONFIRMED'), (2, b'UNREACHABLE'), (3, b'NEED_HELP'), (4, b'Not Yet Processed'), (5, b'Not In zone')]),
+            field=models.IntegerField(default=1, choices=[(0, b'SAFE'), (1, b'NOT CONFIRMED'), (2, b'UNREACHABLE'), (3, b'NEED_HELP'), (4, b'NOT IN ZONE')]),
         ),
     ]

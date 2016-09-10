@@ -1,13 +1,11 @@
 from django.db import models
-from operation.models import operation
-
+from operation.models import Operation
 SAFETY_LEVELS = (
     (0, 'SAFE'),
     (1, 'NOT CONFIRMED'),
     (2, 'UNREACHABLE'),
     (3, 'NEED_HELP'),
-    (4, 'Not Yet Processed'),
-    (5, 'Not In zone')
+    (4, 'NOT IN ZONE')
 )
 
 
@@ -21,7 +19,8 @@ class Refugee(models.Model):
     photo = models.ImageField(blank=True, upload_to='refugee_photos')
     alternate_contact_number = models.CharField(max_length=20, blank=True)
     safety_level = models.IntegerField(choices=SAFETY_LEVELS, default=1)
+    retry_count = models.IntegerField(default=0)
     location = models.TextField(null=True)
     comments = models.TextField(null=True)
     status_updated_by = models.TextField(null=True)
-    operation = models.ForeignKey(operation)
+    operation = models.ForeignKey(Operation,blank=True,default=None)
