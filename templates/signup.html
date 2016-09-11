@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+	<div class="row" style="margin-top: 10%">
+		<div class="col-md-4 col-md-offset-4">
+			<div class="login-panel panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Sign Up</h3>
+				</div>
+				<div class="panel-body">
+					<form class="col s12" method="post" action="/signup/">
+						{% csrf_token %}
+				      <div class="row">
+				        <div class="input-field col s6">
+				          <i class="material-icons prefix">account_circle</i>
+				          <input id="icon_prefix" name="first_name" type="text" class="validate">
+				          <label for="icon_prefix">First Name</label>
+				        </div>
+				        <div class="input-field col s6">
+				          <i class="material-icons prefix">account_circle</i>
+				          <input id="icon_prefix" name="last_name" type="text" class="validate">
+				          <label for="icon_prefix">Last Name</label>
+				        </div>
+				      </div>
+				      <div class="row">
+				        <div class="input-field col s6">
+				          <i class="material-icons prefix">email</i>
+				          <input id="icon_prefix" name="email" type="email" class="validate">
+				          <label for="icon_prefix">Email</label>
+				        </div>
+				        <div class="input-field col s6">
+				          <i class="material-icons prefix">phone</i>
+				          <input id="icon_telephone" name="phone" type="tel" class="validate">
+				          <label for="icon_telephone">Telephone</label>
+				        </div>
+				      </div>
+				      <div class="row">
+				        <div class="input-field col s6">
+				          <i class="material-icons prefix">grade</i>
+				          <input id="icon_prefix" name="password" type="password" class="validate">
+				          <label for="icon_prefix">Password</label>
+				        </div>
+				        <div class="input-field col s6">
+				         <i class="material-icons prefix">grade</i>
+				          <input id="icon_prefix" type="password" class="validate">
+				          <label for="icon_prefix">Re-enter password</label>
+				        </div>
+				      </div>
+				     <p class="bs-component">
+							<center>
+								<input class="btn btn-success btn-sm" type="submit" value="Submit" />
+							</center>
+						</p>
+						<input type="hidden" name="next" value="{{ next }}" />
+					</form>
+				  </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+<script>
+</script>
+
+{% endblock %}
