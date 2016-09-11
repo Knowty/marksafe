@@ -29,7 +29,7 @@ source.addEventListener('message', function(event) {
                     console.log(query);
                     db.run(query);
 
-                    new_query = `SELECT phone_number FROM victim_victim WHERE phone_number = "${data.caller_id}"`;
+                    new_query = `SELECT * FROM victim_victim WHERE phone_number = "${data.caller_id}"`;
                     db.each(new_query, function(err, row) {
                         text = `${row.name} has been marked as needs help!!`;
                         sendSms(row.notification_contact_number, text)
@@ -51,7 +51,7 @@ source.addEventListener('message', function(event) {
                     console.log(query);
                     db.run(query);
 
-                    new_query = `SELECT phone_number FROM victim_victim WHERE phone_number = "${data.caller_id}"`;
+                    new_query = `SELECT * FROM victim_victim WHERE phone_number = "${data.caller_id}"`;
                     db.each(new_query, function(err, row) {
                         text = `${row.name} has been marked safe!!`;
                         sendSms(row.notification_contact_number, text)
@@ -67,10 +67,21 @@ source.addEventListener('message', function(event) {
 
 
 function sendSms(number, text) {
-	url = settings.SMS.API_URL + `?mobile_number=${number}&message=${text}&sms_type=t`
+    console.log(`Number = ${number}, text = ${text}`);
+    // Twilio Credentials
+    var accountSid = 'AC8238efb5fc1b76ed9cc0057752b2a6ed';
+    var authToken = '3fff436479d0126367585c46b8caea73';
 
-	console.log("Sending SMS using URL = " + url);
-	http.get(url, function(response) {
-			console.log('SMS API result = ' + response);
-	});
+    //require the Twilio module and create a REST client
+    var client = require('twilio')(accountSid, authToken);
+
+    client.sendMessage({
+       from: '+14846522475',
+       to: number,
+       body: text
+    }, function(err, message) {
+        console.log(err);
+        console.log(message.sid);
+    });
+
 }
