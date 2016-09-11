@@ -49,4 +49,4 @@ class Command(BaseCommand):
                         msg.delete()
                 except Exception as e:
                     logging.error('failed while placing a call %s' % str(e))
-            time.sleep(1)
+            time.sleep(3)

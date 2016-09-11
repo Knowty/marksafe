@@ -107,9 +107,7 @@ AGENT_NUMBER = "+919069113755"
 SR_KEY = "878f41fa-a503-11e5-b374-067cf20e9301"
 APP_KEY = "twhp3Wlyir9bg4S0A64Qf7lxBZ5sEW7n6q1tryLL"
 MAKECALL_URL = 'https://kpi.knowlarity.com/Basic/v1/account/call/makecall'
-RETRY_AFTER = '30' #in seconds
-AWS_ACCESS_KEY_ID = ''
-AWS_SECRET_KEY = ''
+RETRY_AFTER = '1600' #in seconds
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
@@ -152,7 +150,7 @@ LOGGING = {
     }
         }
 
-AWS_ACCESS_KEY_ID = 'AKIAIIQNFVAMHFIUT47A'
-AWS_SECRET_KEY = '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'
+AWS_ACCESS_KEY_ID = 'AKIAI2EXSQW24DZ3RPNA'
+AWS_SECRET_KEY = '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'
 LOGIN_URL = '/login'
 LOGIN_REDIRECT_URL = "/"
