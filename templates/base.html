@@ -13,7 +13,7 @@
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
-<body>
+<body style="background: url({% static 'img/pat2.jpg' %});">
     <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container">
     <a href="/" class="brand-logo">MarkSafe</a>
@@ -79,7 +79,15 @@
     {% if form.errors %}
     $.notify("Wrong credentials supplied!")
     {% endif %}
+    var trimmed_path = window.location.pathname.trim()
+    if (trimmed_path === "/login/" || trimmed_path === "/signup/") {
+        $("body").css("background-size", "auto")
+    } else {
+        $("body").css("background-size", "0 0")
+    }
+    $('select').material_select();
         </script>
+
 </body>
 
 </html>
