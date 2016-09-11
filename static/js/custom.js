@@ -1,0 +1,1 @@
+$("body").css("background-size", "0 0")

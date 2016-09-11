@@ -2,21 +2,36 @@
     margin-top: 1.5%;
 }
 
-.add-disable{
-	pointer-events: none;
+.add-disable {
+    pointer-events: none;
 }
+
 .logout {
     margin-left: 100%;
 }
+
 .fixed-action-btn.horizontal ul {
-right: -225px;
-top: 48%;
+    right: -225px;
+    top: 48%;
 }
 
 .search-ro {
-	margin-left: 23% !important; 
+    margin-left: 23% !important;
 }
 
 .search-button {
-	margin-top: 3%;
+    margin-top: 3%;
+}
+
+.search-bar {
+    background-color: beige;
+    border: 12px solid #B22222;
+    border-radius: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.stretched-panel {
+	width: 82%;
+    margin-left: 12%;
 }

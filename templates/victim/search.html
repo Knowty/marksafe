@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 {% block content %}
 
-    <div class="row" id='#search_row' style="margin-top: 18%; margin-bottom: 18%;">
+    <div class="row search-bar" id='#search_row' style="margin-top: 18%; margin-bottom: 18%;">
         <div class="col s12" style="margin-top: 2%;"><h2 align="center">Search for a Victim.</h2></div>
         <form class="col s12" method="get" style="margin-left: 25%;">
 
-            <div class="row">
+            <div class="row" style="height: 175px;">
                 <div class="input-field col s6">
                     <input placeholder="Please input the exact phone number.(Eg: +91xxxxxyyyyy)"
                            id="search_input" name='search_input' type="text" class="validate"
@@ -56,14 +57,6 @@
 {% endblock %}
 
 {% block javascript %}
-<script>
-    var x = {{user.is_authenticated}}
-    {% if not user.is_authenticated %}
-    $("add-number").css("display", "none");
-    {% endif %}
-    {% if form.errors %}
-    $.notify("Wrong credentials")
-    {% endif %}
-</script>
+    <script src="{% static 'js/custom.js' %}"></script>
 
 {% endblock %}
