@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div class="row">
-        <div class="col s12"><h2 align="center">Search for a Victim</h2></div>
-        <form class="col s12" method="get">
+
+    <div class="row" id='#search_row' style="margin-top: 18%; margin-bottom: 18%;">
+        <div class="col s12" style="margin-top: 2%;"><h2 align="center">Search for a Victim.</h2></div>
+        <form class="col s12" method="get" style="margin-left: 25%;">
+
             <div class="row">
                 <div class="input-field col s6">
                     <input placeholder="Please input the exact phone number.(Eg: +91xxxxxyyyyy)"
@@ -29,13 +31,23 @@
                         </tr>
                         <tr>
                             <td class="td-label">Status</td>
-                            <td class="td-result">{{ result.safety_level }}</td>
+                            {% if result.safety_level == 0 %}
+                                <td class="green-text">Safe</td>
+                            {% elif result.safety_level == 1 %}
+                                <td class="grey-text">Not Confirmed</td>
+                            {% elif result.safety_level == 2 %}
+                                <td class="yellow-text">Unreachable</td>
+                            {% elif result.safety_level == 3 %}
+                                <td class="red-text">Needs help</td>
+                            {% elif result.safety_level == 4 %}
+                                <td class="green-text">Not in affected zone.</td>
+                            {% endif %}
                         </tr>
                     </tbody>
                 </table>
             {% endblock %}
                 {% else %}
-                    <p>Refugee not found.</p>
+                    <p>Victim not found.</p>
             {% endif %}
         {% endif %}
     </div>
