@@ -9,15 +9,33 @@
     <!-- CSS  -->
     <link href="{% static 'css/materialize.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
     <nav class="light-blue lighten-1" role="navigation">
-        <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">MarkSafe</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="/logout">Logout</a></li>
-            </ul>
-        </div>
+    <div class="nav-wrapper container">
+    <a href="/" class="brand-logo">MarkSafe</a>
+    <ul class="right hide-on-med-and-down">
+    <div class="fixed-action-btn click-to-toggle horizontal" style="top:23px;">
+    <a class="btn-floating btn-large red">
+      <i class="large material-icons">menu</i>
+    </a>
+    <ul>
+    {% if user.is_authenticated %}
+      <li><a href="/victim/create" class="btn-floating btn-large red add-victim"><i class="material-icons">supervisor_account</i></a></li>
+      <li><a href="/operation/create" class="btn-floating  btn-large yellow darken-1 addd-operation"><i class="material-icons">add</i></a></li>
+      <li><a class="btn-floating btn-large blue" href="/logout"><i class="material-icons">input</i></a></li>
+      {% else %}
+       <li><a class="btn-floating btn-large red add-disable"><i class="material-icons">supervisor_account</i></a></li>
+      <li><a class="btn-floating  btn-large yellow add-disable"><i class="material-icons">add</i></a></li>
+      <li><a class="btn-floating btn-large blue" href="/login"><i class="material-icons">open_in_browser</i></a></li>
+      {% endif %}
+    </ul>
+  </div>
+    </ul>
+  </div>
     </nav>
     <div class="section no-pad-bot" id="index-banner">
         <div class="container">
@@ -38,6 +56,7 @@
             </div>
             <div class="footer-copyright">
                 <div class="container">
+                <i class="material-icons prefix">account_circle</i>
                     Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Knowty</a>
                 </div>
             </div>
@@ -46,12 +65,20 @@
         <script src="{% static 'js/jquery.min.js' %}"></script>
         <script src="{% static 'js/materialize.min.js' %}"></script>
         <script src="{% static 'js/notify.min.js' %}"></script>
-        <script src="{% static 'js/custom.js' %}"></script>
+        <script src="{% static 'js/init.js' %}"></script>
 
     <script>
         $(document).ready(function() {
             $('select').material_select();
         });
+        {% if not user.is_authenticated %}
+    $(".add-number").css("display", "none");
+    $(".logout").text("Login");
+    $(".logout").attr("href", "/login")
+    {% endif %}
+    {% if form.errors %}
+    $.notify("Wrong credentials supplied!")
+    {% endif %}
         </script>
 </body>
 

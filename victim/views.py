@@ -25,7 +25,7 @@ class VictimCreateView(FormView):
     template_name = 'victim/create.html'
     form_class = VictimCreateForm
     login_url = 'login/'
-    success_url = '/victim/success'
+    success_url = '/'
 
     def form_valid(self, form):
         data = form.data.dict()
